@@ -43,17 +43,25 @@
                 couponCount++;
             }
         }
+function submitForm() {
+    const form = document.getElementById('submissionForm');
+    const formData = new FormData(form);
 
-        function submitForm() {
-            const form = document.getElementById('submissionForm');
-            const formData = new FormData(form);
-            fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
-                method: 'POST',
-                body: formData
-            }).then(response => response.text())
-              .then(result => alert(result))
-              .catch(error => console.error('Error:', error));
-        }
-    </script>
+    // Collect all coupon codes into an array
+    const coupons = [];
+    document.querySelectorAll('input[name="coupon[]"]').forEach(input => {
+        coupons.push(input.value);
+    });
+    formData.append('coupons', JSON.stringify(coupons));
+
+    fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+        method: 'POST',
+        body: formData
+    }).then(response => response.text())
+      .then(result => alert(result))
+      .catch(error => console.error('Error:', error));
+}
+        
+</script>
 </body>
 </html>
