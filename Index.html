@@ -54,7 +54,7 @@ function submitForm() {
     });
     formData.append('coupons', JSON.stringify(coupons));
 
-    fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbx-FyTjsHxxVpbyVqdFLtgg1tRb474CvB8Q61U2mvx06XozTOxCyBNQtAwjGiMj7iqk/exec', {
         method: 'POST',
         body: formData
     }).then(response => response.text())
